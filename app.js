@@ -28,6 +28,8 @@ window.addEventListener('load', ()=>{
         temperatureDegree.textContent = temperature;
         temperatureDescription.textContent = summary;
         locationTimeZone.textContent = data.timezone;
+        console.log("ICON",icon);
+        section(icon, document.querySelector(".icon"));
 
         let celsius = (temperature - 32)*(5/9);
         temperatureSection.addEventListener('click', () => {
@@ -39,7 +41,13 @@ window.addEventListener('load', ()=>{
                 temperatureSectionSpan.textContent = "F";
                 temperatureDegree.textContent = temperature;
             }
-        })
+        });
 
-    })
+    });
 });
+function section(icon, iconID){
+    const skycons = new skycons({color: "white"});
+    const currentIcon = icon.replace(/-/g, "_").toUpperCase();
+    skycons.play();
+    return skycons.set(iconID, Skycons[currentIcon]);
+}
